@@ -4,6 +4,7 @@ const ButtonContainer = ({
 	className,
 	children,
 	onClick,
+	disabled = false
 }: {
 	className?: string;
 	children?: string;
@@ -12,9 +13,10 @@ const ButtonContainer = ({
 	color?: string;
 	colorHover?: string;
 	onClick?: React.MouseEventHandler<HTMLButtonElement>;
+	disabled?: boolean
 }) => {
 	return (
-		<button className={className} onClick={onClick}>
+		<button className={className} disabled={disabled} onClick={onClick}>
 			<p>{children}</p>
 		</button>
 	);

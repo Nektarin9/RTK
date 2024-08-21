@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Activity, BackButton, Button, Price } from '../../components';
+import { Activity, BackButton, Button, Loader, Price } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchService } from '../../actions';
 import { Link, useParams } from 'react-router-dom';
@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const ServiceContainer = ({ className }: { className?: string }) => {
 	const dispatch = useDispatch();
 	const params = useParams();
-	const {id, description, price, startDate, endDate } = useSelector(selectServices);
+	const { id, description, price, startDate, endDate } = useSelector(selectServices);
 	useEffect(() => {
 		dispatch(fetchService(params.id));
 	}, [dispatch, params.id]);
@@ -21,24 +21,30 @@ const ServiceContainer = ({ className }: { className?: string }) => {
 					<Button>Редактировать</Button>
 				</Link>
 			</div>
-			<div className="container-description">
-				<div className="container-flex">
-					<h2>Продажи услуг</h2>
-					<Activity />
-				</div>
-				<p className="description">{description},</p>
-			</div>
+			{id ? (
+				<>
+					<div className="container-description">
+						<div className="container-flex">
+							<h2>Продажи услуг</h2>
+							<Activity />
+						</div>
+						<p className="description">{description},</p>
+					</div>
 
-			<div className="container-date-price">
-				<div className="date-price">
-					<p>Размер вознагрождения</p>
-					<Price price={price} />
-				</div>
-				<div className="date-price">
-					<p>Сроки проведения</p>
-					<p className="date">{`${startDate} - ${endDate}`}</p>
-				</div>
-			</div>
+					<div className="container-date-price">
+						<div className="date-price">
+							<p>Размер вознагрождения</p>
+							<Price price={price} />
+						</div>
+						<div className="date-price">
+							<p>Сроки проведения</p>
+							<p className="date">{`${startDate} - ${endDate}`}</p>
+						</div>
+					</div>
+				</>
+			) : (
+				<Loader />
+			)}
 		</div>
 	);
 };

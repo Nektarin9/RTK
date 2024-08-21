@@ -1,11 +1,12 @@
 import { Button } from '../button/button';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { BackButton } from '../back-button/back-button';
-import { changeFormatPrice } from '../../utils';
-import { updateService } from '../../actions';
+import { changeFormatPrice, checkDateFormat } from '../../utils';
+import { addService, deleteService, updateService } from '../../actions';
+import { InputDate } from '../input-date/input-date';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
 
 interface EditCardProps {
 	className?: string;
@@ -18,6 +19,7 @@ interface EditCardProps {
 	setDateEnd: (dateStart: string) => void;
 	dateEnd: string;
 	action: 'UPDATE' | 'ADD';
+	id?: string | number;
 }
 
 const EditCardContainer = ({
@@ -31,10 +33,25 @@ const EditCardContainer = ({
 	setDateEnd,
 	dateEnd,
 	action,
+	id,
 }: EditCardProps) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { id } = useParams();
+	const [errorDataStart, setErrorDataStart] = useState(false);
+	const [errorDataEnd, setErrorDataEnd] = useState(false);
+	useEffect(() => {
+		setErrorDataStart(checkDateFormat(dateStart));
+		setErrorDataEnd(checkDateFormat(dateEnd));
+	}, [dateStart, dateEnd]);
+
+	function handleInputChange(
+		event: React.ChangeEvent<HTMLInputElement>,
+		state: (date: string) => void,
+	) {
+		const { value } = event.target;
+		state(value);
+	}
+
 	return (
 		<div className={className}>
 			<BackButton>Назад</BackButton>
@@ -46,8 +63,9 @@ const EditCardContainer = ({
 				/>
 
 				<div className="container-input">
-					<input
+					<InputDate
 						type="number"
+						width="50%"
 						className="input-price"
 						placeholder="Введите число"
 						value={priceValue}
@@ -65,11 +83,19 @@ const EditCardContainer = ({
 			</div>
 			<div className="container-date">
 				<div className="container-date-end-start">
-					<input
+					{errorDataStart && (
+						<span className="error">Соблюдайте формат дд.мм.гггг</span>
+					)}
+					<InputDate
+						border={
+							errorDataStart === true
+								? `2px solid #ef5353;`
+								: '2px solid #d4d4d4;'
+						}
 						value={dateStart}
-						onChange={({ target }) => setDateStart(target.value)}
-						className="input-date"
+						onChange={(event) => handleInputChange(event, setDateStart)}
 						type="text"
+						maxLength={10}
 						placeholder="дд.мм.гггг"
 					/>
 					<span className="date-start">Дата начала</span>
@@ -79,12 +105,18 @@ const EditCardContainer = ({
 						alt="Дата начала"
 					/>
 				</div>
-
 				<div className="container-date-end-start">
-					<input
+					{errorDataEnd && (
+						<span className="error">Соблюдайте формат дд.мм.гггг</span>
+					)}
+					<InputDate
+						border={
+							errorDataEnd === true
+								? `2px solid #ef5353;`
+								: '2px solid #d4d4d4;'
+						}
 						value={dateEnd}
-						onChange={({ target }) => setDateEnd(target.value)}
-						className="input-date"
+						onChange={(event) => handleInputChange(event, setDateEnd)}
 						type="text"
 						maxLength={10}
 						placeholder="дд.мм.гггг"
@@ -100,6 +132,7 @@ const EditCardContainer = ({
 
 			<div className="container-btn">
 				<Button
+					disabled={errorDataStart || errorDataEnd}
 					onClick={() => {
 						if (action === 'UPDATE') {
 							dispatch(
@@ -112,9 +145,15 @@ const EditCardContainer = ({
 								}),
 							);
 						} else if (action === 'ADD') {
-							console.log(5);
+							dispatch(
+								addService({
+									description: descriptionText,
+									price: changeFormatPrice(priceValue),
+									startDate: dateStart,
+									endDate: dateEnd,
+								}),
+							);
 						}
-
 						navigate(-1);
 					}}
 					color="#ff5500"
@@ -122,9 +161,22 @@ const EditCardContainer = ({
 					backgroundColorHover="#ff5500"
 					border="2px solid #ff5500;"
 				>
-					Сохранить задание
+					{action !== 'ADD' ? 'Сохранить задание' : 'Добавить задание'}
 				</Button>
-
+				{action !== 'ADD' && (
+					<Button
+						onClick={() => {
+							dispatch(deleteService(id));
+							navigate('/');
+						}}
+						color="#ff5500"
+						colorHover="#ffffff"
+						backgroundColorHover="#ff5500"
+						border="2px solid #ff5500;"
+					>
+						Удалить задание
+					</Button>
+				)}
 				<Button
 					onClick={() => navigate(-1)}
 					color="#ff5500"
@@ -205,11 +257,11 @@ export const EditCard = styled(EditCardContainer)`
 		background-color: white;
 	}
 	.container-date-end-start {
+		margin-top: 150px;
 		position: relative;
 		width: 100%;
 	}
 	.input-date {
-		margin-top: 150px;
 		width: 100%;
 		border-radius: 10px;
 		font-size: 16px;
@@ -247,5 +299,11 @@ export const EditCard = styled(EditCardContainer)`
 		background-color: white;
 		padding: 15px;
 		border-radius: 15px;
+	}
+	.error {
+		position: absolute;
+		font-size: 14px;
+		color: red;
+		top: -25px;
 	}
 `;

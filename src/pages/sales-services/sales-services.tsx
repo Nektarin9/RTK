@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { Card } from '../../components';
+import { Button, Card, Loader } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchServices } from '../../actions';
 import { selectSalesServices } from '../../selectors';
 import { clearService } from '../../reducers/app-slice';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SalesServicesContainer = ({ className }: { className?: string }) => {
@@ -15,22 +16,38 @@ const SalesServicesContainer = ({ className }: { className?: string }) => {
 	}, [dispatch]);
 	return (
 		<div className={className}>
-			{services.map(({ id, description, price, startDate, endDate }) => (
-				<Card
-					key={id}
-					id={id}
-					description={description}
-					price={price}
-					startDate={startDate}
-					endDate={endDate}
-				/>
-			))}
+			<Link to={'/services/add'} className="btn">
+				<Button>Добавить задание</Button>
+			</Link>
+			{services.length ? (
+				<div className="container">
+					{services.map(({ id, description, price, startDate, endDate }) => (
+						<Card
+							key={id}
+							id={id}
+							description={description}
+							price={price}
+							startDate={startDate}
+							endDate={endDate}
+						/>
+					))}
+				</div>
+			) : (
+				<Loader />
+			)}
 		</div>
 	);
 };
 
 export const SalesServices = styled(SalesServicesContainer)`
-	display: flex;
-	flex-wrap: wrap;
-	gap: 15px;
+	.btn {
+		display: flex;
+		justify-content: flex-end;
+	}
+	.container {
+		margin-top: 20px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 15px;
+	}
 `;

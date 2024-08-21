@@ -3,7 +3,7 @@ import { Services } from '../interface/services';
 export const changeData = (
 	data: Services[],
 	payload: Services | number | string,
-	type: string,
+	type: 'UPDATE' | 'ADD' | 'DELETE',
 ): void => {
 	if (type === 'UPDATE' && typeof payload === 'object') {
 		const copyData = [...data];

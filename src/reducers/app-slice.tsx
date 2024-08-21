@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchServices, updateService } from '../actions';
+import { addService, deleteService, fetchServices, updateService } from '../actions';
 import { fetchService } from '../actions/fetch-service';
 import { changeData } from '../utils/change-data';
 
@@ -25,6 +25,12 @@ export const appSlice = createSlice({
 		});
 		builder.addCase(updateService.fulfilled, (state, action) => {
 			changeData(state.services, action.payload, 'UPDATE');
+		});
+		builder.addCase(addService.fulfilled, (state, action) => {
+			changeData(state.services, action.payload, 'ADD');
+		});
+		builder.addCase(deleteService.fulfilled, (state, action) => {
+			changeData(state.services, action.payload, 'DELETE');
 		});
 	},
 });

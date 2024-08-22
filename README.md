@@ -33,7 +33,7 @@ Backend часть: Node.js, Express, mongoose, chalk, body-parser, nodemon
 
 1. Переходим в директорию "frontend"
 2. Устанавливаем зависимости: npm i
-3. Генерируем build: npm run dev
+3. Генерируем build: npm run build
 4. Переходим в директорию "server"
 5. Устанавливаем зависимости: npm i
 6. Запускаем сервер: npm run serve

@@ -42,5 +42,5 @@
  	<img src="https://s.iimg.su/s/22/18tyMYxeowzIW9NfYCu7KEgZmHd9U9O0HtJ2NVqu.png"  /> 
  	<br />
  	<img src="https://s.iimg.su/s/22/mD8L6nKTudLvgmDHxoTZSWczpFobZ1eoTJO19XLO.png"  /> 
-  <br />
+	<br />
  	<img src="https://s.iimg.su/s/22/ZWVPAHfNQSXOGtiRZQewXaYVuS8B5xaZ189xuM6o.png"  /> 

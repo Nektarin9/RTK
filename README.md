@@ -35,12 +35,12 @@
 7) Сервер будет доступен по адресу http://localhost:4000
  
   
-	<br />
-	<br />
-	<img src="https://s.iimg.su/s/22/F1fQU0PWObRhTiHZgnpOOtpvyv7NfrTbMtMgUBgs.png"  /> 
-	<br />
- 	<img src="https://s.iimg.su/s/22/18tyMYxeowzIW9NfYCu7KEgZmHd9U9O0HtJ2NVqu.png"  /> 
- 	<br />
- 	<img src="https://s.iimg.su/s/22/mD8L6nKTudLvgmDHxoTZSWczpFobZ1eoTJO19XLO.png"  /> 
-	<br />
- 	<img src="https://s.iimg.su/s/22/ZWVPAHfNQSXOGtiRZQewXaYVuS8B5xaZ189xuM6o.png"  /> 
+<br />
+<br />
+<img src="https://s.iimg.su/s/22/F1fQU0PWObRhTiHZgnpOOtpvyv7NfrTbMtMgUBgs.png"  /> 
+<br />
+<img src="https://s.iimg.su/s/22/18tyMYxeowzIW9NfYCu7KEgZmHd9U9O0HtJ2NVqu.png"  /> 
+<br />
+<img src="https://s.iimg.su/s/22/mD8L6nKTudLvgmDHxoTZSWczpFobZ1eoTJO19XLO.png"  /> 
+<br />
+<img src="https://s.iimg.su/s/22/ZWVPAHfNQSXOGtiRZQewXaYVuS8B5xaZ189xuM6o.png"  /> 

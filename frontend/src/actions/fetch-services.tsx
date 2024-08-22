@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { request } from '../utils';
 
-export const fetchService: any = createAsyncThunk(
-	'services/fetchService',
-	async (id: string | number) => {
+export const fetchServices: any = createAsyncThunk(
+	'services/fetchServices',
+	async () => {
 		try {
-			const response = await request(`http://localhost:3005/services/${id}`);
+			const response = await request(`/services`);
 			return response;
 		} catch (error) {
 			console.error(error);

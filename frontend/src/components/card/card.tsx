@@ -21,7 +21,7 @@ const CardContainer = ({
 	endDate,
 }: CardProps) => {
 	return (
-		<Link to={`/services/${id}`} className={className}>
+		<Link to={`/${id}`} className={className}>
 			<div className="card">
 				<h2>Продажа услуг</h2>
 				<Activity />
@@ -49,7 +49,7 @@ const CardContainer = ({
 export const Card = styled(CardContainer)`
 	.card {
 		width: 330px;
-		min-height: 300px;
+		min-height: 305px;
 		padding: 15px;
 		background-color: rgb(249, 249, 250);
 		border-radius: 10px;

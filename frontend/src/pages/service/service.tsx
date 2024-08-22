@@ -17,7 +17,7 @@ const ServiceContainer = ({ className }: { className?: string }) => {
 		<div className={className}>
 			<div className="flex">
 				<BackButton>К списку заданий</BackButton>
-				<Link to={`/services/${id}/edit`}>
+				<Link to={`/${id}/edit`}>
 					<Button>Редактировать</Button>
 				</Link>
 			</div>
@@ -28,7 +28,7 @@ const ServiceContainer = ({ className }: { className?: string }) => {
 							<h2>Продажи услуг</h2>
 							<Activity />
 						</div>
-						<p className="description">{description},</p>
+						<p className="description">{description}</p>
 					</div>
 
 					<div className="container-date-price">

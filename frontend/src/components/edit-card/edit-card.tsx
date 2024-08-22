@@ -75,7 +75,7 @@ const EditCardContainer = ({
 					/>
 					<span className="span-input">Описание</span>
 					<img
-						className="img-input"
+						className="img-price"
 						src="https://s.iimg.su/s/21/WmSGiTKCZzqPCv6dS76b27UNTfmyAkFndkS5q5rU.png"
 						alt="Цена"
 					/>
@@ -133,10 +133,10 @@ const EditCardContainer = ({
 			<div className="container-btn">
 				<Button
 					disabled={errorDataStart || errorDataEnd}
-					onClick={() => {
+					onClick={async () => {
 						if (action === 'UPDATE') {
 							dispatch(
-								updateService({
+								await updateService({
 									id,
 									description: descriptionText,
 									price: changeFormatPrice(priceValue),
@@ -145,7 +145,7 @@ const EditCardContainer = ({
 								}),
 							);
 						} else if (action === 'ADD') {
-							dispatch(
+							await dispatch(
 								addService({
 									description: descriptionText,
 									price: changeFormatPrice(priceValue),
@@ -165,8 +165,8 @@ const EditCardContainer = ({
 				</Button>
 				{action !== 'ADD' && (
 					<Button
-						onClick={() => {
-							dispatch(deleteService(id));
+						onClick={async () => {
+							await dispatch(deleteService(id));
 							navigate('/');
 						}}
 						color="#ff5500"
@@ -214,7 +214,7 @@ export const EditCard = styled(EditCardContainer)`
 	.span-description {
 		position: absolute;
 		top: 23px;
-		left: 34px;
+		left: 38px;
 		font-size: 14px;
 		color: #565656;
 	}
@@ -240,9 +240,9 @@ export const EditCard = styled(EditCardContainer)`
 		font-size: 14px;
 		color: #565656;
 	}
-	.img-input {
+	.img-price {
 		position: absolute;
-		right: 15px;
+		right: 9px;
 		top: 34px;
 	}
 
@@ -304,6 +304,6 @@ export const EditCard = styled(EditCardContainer)`
 		position: absolute;
 		font-size: 14px;
 		color: red;
-		top: -25px;
+		top: -39px;
 	}
 `;

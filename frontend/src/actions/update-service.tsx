@@ -7,7 +7,7 @@ export const updateService: any = createAsyncThunk(
 	async (data: Services) => {
 		try {
 			const response = await request(
-				`http://localhost:3005/services/${data.id}`,
+				`/services/${data.id}`,
 				'PATCH',
 				{
 					description: data.description,

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Button, Card, Loader } from '../../components';
+import { useEffect, useState } from 'react';
+import { Button, Card } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchServices } from '../../actions';
 import { selectSalesServices } from '../../selectors';
@@ -10,14 +10,22 @@ import styled from 'styled-components';
 const SalesServicesContainer = ({ className }: { className?: string }) => {
 	const dispatch = useDispatch();
 	const services = useSelector(selectSalesServices);
+	const [showNoTasksMessage, setShowNoTasksMessage] = useState(false);
+
 	useEffect(() => {
 		dispatch(fetchServices());
 		dispatch(clearService());
+		const timeout = setTimeout(() => {
+			setShowNoTasksMessage(true);
+		}, 2000);
+
+		return () => clearTimeout(timeout);
 	}, [dispatch]);
+
 	return (
 		<div className={className}>
 			<div className="btn">
-				<Link to={'/services/add'}>
+				<Link to={'/add'}>
 					<Button>Добавить задание</Button>
 				</Link>
 			</div>
@@ -35,13 +43,14 @@ const SalesServicesContainer = ({ className }: { className?: string }) => {
 					))}
 				</div>
 			) : (
-				<Loader />
+				showNoTasksMessage && <h1>Хм, похоже заданий нет, добавьте новое.</h1>
 			)}
 		</div>
 	);
 };
 
 export const SalesServices = styled(SalesServicesContainer)`
+
 	.btn {
 		display: flex;
 		justify-content: flex-end;
@@ -49,7 +58,13 @@ export const SalesServices = styled(SalesServicesContainer)`
 	.container {
 		margin-top: 20px;
 		display: flex;
+		justify-content: center;
 		flex-wrap: wrap;
 		gap: 15px;
+	}
+	h1 {
+		margin-top: 40px;
+		text-align: center;
+		font-size: 24px;
 	}
 `;

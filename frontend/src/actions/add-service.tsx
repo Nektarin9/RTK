@@ -6,7 +6,7 @@ export const addService: any = createAsyncThunk(
 	'services/addService',
 	async (data: Services) => {
 		try {
-			const response = await request(`http://localhost:3005/services`, 'POST', {
+			const response = await request(`/services`, 'POST', {
 				description: data.description,
 				price: data.price,
 				startDate: data.startDate,

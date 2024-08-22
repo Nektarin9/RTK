@@ -25,10 +25,11 @@
 4. Разработана логика для всех CRUD операция
 
 Технологии:<br/>
+
 Frontend часть: React, TypeScript, Redux Toolkit, react-router-dom, Vite, styled-components <br/>
 Backend часть: Node.js, Express, mongoose, chalk, body-parser, nodemon
 
-Как запустить проект: <br />
+**Как запустить проект:** <br />
 
 1. Переходим в директорию "frontend"
 2. Устанавливаем зависимости: npm i

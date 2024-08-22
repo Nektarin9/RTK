@@ -19,6 +19,7 @@ const PriceContainer = ({
 };
 
 export const Price = styled(PriceContainer)`
+	position: relative;
 	margin-top: 20px;
 	height: 40px;
 	display: flex;
@@ -28,8 +29,10 @@ export const Price = styled(PriceContainer)`
 		height: 30px;
 	}
 	.price {
+		position: absolute;
 		font-size: 19px;
 		font-weight: 700;
-		margin-left: 5px;
+		left: 40px;
+		top: 5px;
 	}
 `;

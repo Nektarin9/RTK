@@ -1,6 +1,6 @@
 export const request = (
 	url: string,
-	method?: 'POST' | 'PATH' | 'PUT' | 'DELETE',
+	method?: 'POST' | 'PATCH' | 'PUT' | 'DELETE',
 	data?: object,
 ) => {
 	return fetch(url, {

@@ -23,7 +23,7 @@ export const Activity = styled(ActivityContainer)`
 		padding: 5px;
 	}
 	.span-active {
-		margin: 0 5px 0 15px;
+		margin: 0 5px 2px 15px;
 		color: #09b509;
 		font-size: 12px;
 		vertical-align: middle;
@@ -32,6 +32,6 @@ export const Activity = styled(ActivityContainer)`
 		position: absolute;
 		left: -9px;
 		font-size: 30px;
-		top: -9px;
+		top: -8.5px;
 	}
 `;

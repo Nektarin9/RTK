@@ -16,9 +16,11 @@ const SalesServicesContainer = ({ className }: { className?: string }) => {
 	}, [dispatch]);
 	return (
 		<div className={className}>
-			<Link to={'/services/add'} className="btn">
-				<Button>Добавить задание</Button>
-			</Link>
+			<div className="btn">
+				<Link to={'/services/add'}>
+					<Button>Добавить задание</Button>
+				</Link>
+			</div>
 			{services.length ? (
 				<div className="container">
 					{services.map(({ id, description, price, startDate, endDate }) => (

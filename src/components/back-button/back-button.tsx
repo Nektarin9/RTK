@@ -18,6 +18,7 @@ const BackButtonContainer = ({
 };
 
 export const BackButton = styled(BackButtonContainer)`
+	position: relative;
 	font-size: 45px;
 	color: rgba(21, 21, 21, 0.582);
 	background: none;
@@ -31,10 +32,12 @@ export const BackButton = styled(BackButtonContainer)`
 		transition: 0.15s;
 	}
 	span {
+		position: relative;
 		font-size: 16px;
 		font-weight: 600;
 		color: black;
 		vertical-align: middle;
-		margin-left: 5px;
+		left: 5px;
+		top: -2px;
 	}
 `;
